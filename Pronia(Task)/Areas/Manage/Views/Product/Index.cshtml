@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model List<Slider>
+<div class="container mt-5 ml-25 mr-5">
+    <div class="card-body text-center">
+        <h2>Slider list</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">PrimaryTitle</th>
+                    <th scope="col">SecondaryTitle</th>
+                    <th scope="col">Decription</th>
+                    <th scope="col">ImageUrl</th>
+                    <th scope="col">Order</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int count = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@item.Order</td>
+                        <td>@item.PrimaryTitle</td>
+                        <td>@item.SecondaryTitle</td>
+                        <td>@item.Description</td>
+                        <td><img style="width:40px;" src="@item.ImageUrl" /></td>
+                        <td><a asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        <td><a asp-controller="Slider" asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
